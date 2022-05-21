@@ -7,19 +7,41 @@ using namespace std;
 //User function Template for C++
 class Solution{   
   public:
+    //brute force
+    // vector<int> farNumber(int n,vector<int> arr){
+    //     //code here
+    //     vector<int>ans(n);
+    //     for(int i=0;i<n;i++){
+    //         int j=n-1;
+    //         while(j>i){
+    //             if(arr[j]<arr[i]){
+    //                 ans[i]=j; 
+    //                 break;
+    //             }
+    //             j--;
+    //         }
+    //         if(j==i) ans[i]=-1;
+    //     }
+    //     return ans;
+    // }
+    
     vector<int> farNumber(int n,vector<int> arr){
-        //code here
-        vector<int>ans(n);
+        vector<int>ans(n,-1),suff(n);
+        suff[n-1]=arr[n-1];
+        for(int i=n-2;i>=0;i--)
+            suff[i]=min(suff[i+1],arr[i]);
+        
         for(int i=0;i<n;i++){
-            int j=n-1;
-            while(j>i){
-                if(arr[j]<arr[i]){
-                    ans[i]=j; 
-                    break;
+            int l=i+1,h=n-1,temp;
+            while(l<=h){
+                int mid=(h+l)/2;
+                if(suff[mid]<arr[i]){
+                    ans[i]=mid;
+                    l=mid+1;
                 }
-                j--;
+                else
+                    h=mid-1;
             }
-            if(j==i) ans[i]=-1;
         }
         return ans;
     }
