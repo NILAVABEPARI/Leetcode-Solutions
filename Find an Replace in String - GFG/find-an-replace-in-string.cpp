@@ -10,7 +10,7 @@ class Solution {
   public:
     string findAndReplace(string S ,int Q, int index[], string sources[], string targets[]) {
         // code here
-        int len,sum=0;
+        int sum=0;
         for(int i=0;i<Q;i++){
             bool flag=false;
             for(int j=0;j<sources[i].size();j++){
