@@ -5,7 +5,7 @@ public:
         
         ListNode *dummy=new ListNode(0);
         dummy->next=head;
-        ListNode *temp=head,*prev=dummy,*curr,*nxt;
+        ListNode *prev=dummy,*curr,*nxt;
         for(int i=1;i<l;i++){
             prev=prev->next;
             r--;
