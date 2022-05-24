@@ -1,8 +1,6 @@
 class Solution {
 public:    
-    ListNode* reverseBetween(ListNode* head, int l, int r){
-        if(!head->next) return head;
-        
+    ListNode* reverseBetween(ListNode* head, int l, int r){        
         ListNode *dummy=new ListNode(0);
         dummy->next=head;
         ListNode *prev=dummy,*curr,*nxt;
