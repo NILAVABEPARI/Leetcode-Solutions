@@ -45,8 +45,7 @@ class Solution{
         for (int i = 0; i < n; i++) 
             dp[i][0] = true;
             
-        if (arr[0] <= totSum)
-            dp[0][totSum] = true;
+        if (arr[0] <= totSum) dp[0][arr[0]] = true;
 
         for (int ind = 1; ind < n; ind++) {
             for (int target = 1; target <= totSum; target++) {
@@ -58,9 +57,9 @@ class Solution{
             }
         } 
         int mini = 1e9;
-        for (int i = 0; i <= totSum; i++) {
+        for (int i = 0; i <= totSum/2; i++) {
             if (dp[n - 1][i] == true) {
-                int diff = abs(i - (totSum - i));
+                int diff = abs(2*i - totSum);
                 mini = min(mini, diff);
             }
         }
