@@ -18,19 +18,19 @@ public:
     // }
     
     //tabulation
-    // int numDistinct(string s, string t) {
-    //     int n=s.length(),m=t.length();
-    //     vector<vector<int>>dp(n+1,vector<int>(m+1,0));
-    //     for(int i=0;i<=n;i++) dp[i][0]=1;        
-    //     for(int i=1;i<=n;i++){
-    //         for(int j=1;j<=m;j++){
-    //             if(s[i-1]==t[j-1])
-    //                 dp[i][j]=(dp[i-1][j-1]+dp[i-1][j])%mod; 
-    //         else dp[i][j]=dp[i-1][j];
-    //         }            
-    //     }
-    //     return dp[n][m];
-    // }
+    int numDistinct(string s, string t) {
+        int n=s.length(),m=t.length();
+        vector<vector<double>>dp(n+1,vector<double>(m+1,0));
+        for(int i=0;i<=n;i++) dp[i][0]=1;        
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(s[i-1]==t[j-1])
+                    dp[i][j]=(dp[i-1][j-1]+dp[i-1][j]); 
+            else dp[i][j]=dp[i-1][j];
+            }            
+        }
+        return (int)dp[n][m];
+    }
     
     //space optimization
     // int numDistinct(string s, string t) {
@@ -50,17 +50,17 @@ public:
     // }
     
     //1 array SO
-    int numDistinct(string s, string t) {
-        int n=s.length(),m=t.length();
-        vector<double>prev(m+1,0);
-        prev[0]=1; 
-        for(int i=1;i<=n;i++){
-            for(int j=m;j>=1;j--){
-                if(s[i-1]==t[j-1])
-                    prev[j]=(prev[j-1]+prev[j]);
-            else prev[j]=prev[j];
-            }
-        }
-        return (int)prev[m];
-    }
+    // int numDistinct(string s, string t) {
+    //     int n=s.length(),m=t.length();
+    //     vector<double>prev(m+1,0);
+    //     prev[0]=1; 
+    //     for(int i=1;i<=n;i++){
+    //         for(int j=m;j>=1;j--){
+    //             if(s[i-1]==t[j-1])
+    //                 prev[j]=(prev[j-1]+prev[j]);
+    //         else prev[j]=prev[j];
+    //         }
+    //     }
+    //     return (int)prev[m];
+    // }
 };
