@@ -17,18 +17,36 @@ public:
     
     
     //tabulation
+    // int lengthOfLIS(vector<int>& nums){
+    //     int n=nums.size();
+    //     vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+    //     for(int ind=n-1;ind>=0;ind--){
+    //         for(int prev=ind-1;prev>=-1;prev--){
+    //             int ntake=0+dp[ind+1][prev+1];
+    //             int take=0;
+    //             if(prev==-1 || nums[ind]>nums[prev]) 
+    //                 take=1+dp[ind+1][ind+1];
+    //             dp[ind][prev+1]=max(take,ntake);
+    //         }
+    //     }      
+    //     return dp[0][-1+1];
+    // }
+    
+    
+    //space optimization
     int lengthOfLIS(vector<int>& nums){
         int n=nums.size();
-        vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+        vector<int>next(n+1,0),curr(n+1,0);
         for(int ind=n-1;ind>=0;ind--){
             for(int prev=ind-1;prev>=-1;prev--){
-                int ntake=0+dp[ind+1][prev+1];
+                int ntake=0+next[prev+1];
                 int take=0;
                 if(prev==-1 || nums[ind]>nums[prev]) 
-                    take=1+dp[ind+1][ind+1];
-                dp[ind][prev+1]=max(take,ntake);
+                    take=1+next[ind+1];
+                curr[prev+1]=max(take,ntake);
             }
+            next=curr;
         }      
-        return dp[0][-1+1];
-    }    
+        return next[-1+1];
+    }
 };
