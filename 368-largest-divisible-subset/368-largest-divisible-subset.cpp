@@ -24,9 +24,6 @@ public:
             temp.push_back(nums[lastInd]);        
         }
         reverse(temp.begin(),temp.end());
-        // for(auto &it:temp) cout<<it<<" ";
-        // cout<<endl;
-        // return maxi;
     }
     vector<int> largestDivisibleSubset(vector<int>& nums) {
         vector<int>temp;
