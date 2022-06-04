@@ -26,17 +26,38 @@ public:
     // }
     
     //iterative
+    // vector<int> preorderTraversal(TreeNode* root){
+    //     vector<int>ans;
+    //     if(!root) return ans;
+    //     stack<TreeNode*>st;
+    //     st.push(root);
+    //     while(!st.empty()){
+    //         TreeNode *curr=st.top();
+    //         st.pop();
+    //         ans.push_back(curr->val);
+    //         if(curr->right) st.push(curr->right);
+    //         if(curr->left) st.push(curr->left);
+    //     }
+    //     return ans;
+    // }
+    
+    
+    //space optimized
     vector<int> preorderTraversal(TreeNode* root){
         vector<int>ans;
         if(!root) return ans;
         stack<TreeNode*>st;
-        st.push(root);
-        while(!st.empty()){
-            TreeNode *curr=st.top();
-            st.pop();
-            ans.push_back(curr->val);
-            if(curr->right) st.push(curr->right);
-            if(curr->left) st.push(curr->left);
+        TreeNode *curr=root;
+        while(curr!=NULL || !st.empty()){
+            while(curr){
+                ans.push_back(curr->val);
+                if(curr->right) st.push(curr->right);
+                curr=curr->left;
+            }
+            if(!st.empty()){
+                curr=st.top();
+                st.pop();
+            }
         }
         return ans;
     }
