@@ -108,17 +108,17 @@ class Solution
         //Your code here
         vector<int>ans;
         if(!root) return ans;
-        map<int,int>mp;
-        queue<pair<Node*,int>>q;
+        map<int,int>mp; // level values
+        queue<pair<Node*,int>>q; // node level
         q.push({root,0});
         while(!q.empty()){
             Node *curr=q.front().first;
-            int line=q.front().second;
+            int level=q.front().second;
             q.pop();
-            if(mp.count(line)==0)
-                mp[line]=curr->data;
-            if(curr->left) q.push({curr->left,line-1});
-            if(curr->right) q.push({curr->right,line+1});
+            if(mp.count(level)==0)
+                mp[level]=curr->data;
+            if(curr->left) q.push({curr->left,level-1});
+            if(curr->right) q.push({curr->right,level+1});
         }
         for(auto it:mp)
             ans.push_back(it.second);
