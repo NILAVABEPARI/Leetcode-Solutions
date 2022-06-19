@@ -12,9 +12,9 @@
 class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        map < int, map < int, multiset < int >>> nodes;
-        queue < pair < TreeNode * , pair < int, int >>> todo;
-        todo.push({root,{0,0}}); //initial vertical and level
+        map < int, map < int, multiset < int >>> nodes; // vertical level values
+        queue < pair < TreeNode * , pair < int, int >>> todo;  // node vertical level
+        todo.push({root,{0,0}}); //root vertical and level
         while (!todo.empty()) {
             auto p = todo.front();
             todo.pop();
@@ -22,7 +22,6 @@ public:
             //x -> vertical , y->level
             int x = p.second.first, y = p.second.second;
             nodes[x][y].insert(temp -> val); //inserting to multiset
-
             if (temp -> left) 
               todo.push({temp -> left,{x - 1,y + 1}});
             if (temp -> right) 
