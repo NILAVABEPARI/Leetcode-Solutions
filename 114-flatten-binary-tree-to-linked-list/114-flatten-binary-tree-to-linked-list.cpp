@@ -34,16 +34,39 @@
 
 
 //recursive
+// class Solution {
+// private:
+//     TreeNode *prev=NULL;
+// public:    
+//     void flatten(TreeNode* root) {
+//         if(!root) return;        
+//         flatten(root->right);
+//         flatten(root->left);        
+//         root->right=prev;
+//         root->left=NULL;
+//         prev=root;
+//     }
+// };
+
+
+
+
+//morris traversal
 class Solution {
-private:
-    TreeNode *prev=NULL;
-public:    
+  TreeNode * prev = NULL;
+  public:
     void flatten(TreeNode* root) {
-        if(!root) return;        
-        flatten(root->right);
-        flatten(root->left);        
-        root->right=prev;
-        root->left=NULL;
-        prev=root;
+        TreeNode* cur = root;
+		while (cur){
+			if(cur->left){
+				TreeNode* pre = cur->left;
+				while(pre->right)
+					pre = pre->right;				
+				pre->right = cur->right;
+				cur->right = cur->left;
+				cur->left = NULL;
+			}
+			cur = cur->right;
+		}
     }
 };
