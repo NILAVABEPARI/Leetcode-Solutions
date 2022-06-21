@@ -33,7 +33,7 @@ class Solution {
 
 
     // using bfs
-	bool checkForCycle(int s, int V, vector<int> adj[], vector<int> &visited){
+	bool checkForCycle(int s, vector<int> adj[], vector<int> &visited){
         // Create a queue for BFS
         queue<pair<int, int>> q;
         visited[s] = true;
@@ -57,7 +57,7 @@ class Solution {
         vector<int> vis(V, 0);
         for (int i = 0; i < V; i++){
             if (!vis[i]){
-                if (checkForCycle(i, V, adj, vis))
+                if (checkForCycle(i, adj, vis))
                     return true;
             }
         }
