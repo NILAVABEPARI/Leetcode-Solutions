@@ -45,7 +45,6 @@ class Solution
     	    }
     	}
     	
-    	//int vi[V]={0};
         int ans=0;
     	while(!st.empty()) {
     	    int node = st.top();
