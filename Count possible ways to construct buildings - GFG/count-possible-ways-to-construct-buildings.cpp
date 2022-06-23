@@ -21,13 +21,26 @@ class Solution{
 	
 	
 	//tabulaiton
+// 	int TotalWays(int N){
+// 	    vector<long long int>dp(N+1,0);
+// 	    dp[1]=2;
+// 	    dp[2]=3;
+// 	    for(int i=3;i<=N;i++)
+// 	        dp[i]=(dp[i-1]+dp[i-2])%1000000007;
+// 	    return ((dp[N]*dp[N])%1000000007);
+// 	}
+	
+	
+	//space eoptimized
 	int TotalWays(int N){
-	    vector<long long int>dp(N+1,0);
-	    dp[1]=2;
-	    dp[2]=3;
-	    for(int i=3;i<=N;i++)
-	        dp[i]=(dp[i-1]+dp[i-2])%1000000007;
-	    return ((dp[N]*dp[N])%1000000007);
+	    long long int prev1=3,prev2=2;
+	    if(N==1) return ((prev2*prev2)%1000000007);
+	    for(int i=3;i<=N;i++){
+	        long long int curr=(prev1+prev2)%1000000007;
+	        prev2=prev1;
+	        prev1=curr;
+	    }
+	    return ((prev1*prev1)%1000000007);
 	}
 };
 
