@@ -1,14 +1,17 @@
 class Solution {
     public:
     /*bool isSafe(int row, int col, int n,vector<string>board){
+        //upper diagonal
         int x=row,y=col;
         while(row>=0 && col>=0){
             if(board[row--][col--]=='Q') return false;
         }
+        //left of that row        
         row=x,col=y;
         while(col>=0){
             if(board[row][col--]=='Q') return false;
         }
+        //lower diagonal
         row=x,col=y;
         while(row<n && col>=0){
             if(board[row++][col--]=='Q') return false;
@@ -48,17 +51,16 @@ class Solution {
             return;
         }
         for(int row=0;row<n;row++){
-            if(leftRow[row]==0 && upperDia[row+col]==0 && 
-                lowerDia[n-1+col-row]==0){
+            if(leftRow[row]==0 && lowerDia[row+col]==0 && upperDia[n-1+col-row]==0){
                 board[row][col]='Q';
                 leftRow[row]=1;
-                upperDia[row+col]=1; 
-                lowerDia[n-1+col-row]=1;
+                lowerDia[row+col]=1; 
+                upperDia[n-1+col-row]=1;
                 recur(col+1,n,board,ans,leftRow,upperDia,lowerDia);
                 board[row][col]='.';
                 leftRow[row]=0;
-                upperDia[row+col]=0; 
-                lowerDia[n-1+col-row]=0;
+                lowerDia[row+col]=0; 
+                upperDia[n-1+col-row]=0;
             }
         }        
     }
