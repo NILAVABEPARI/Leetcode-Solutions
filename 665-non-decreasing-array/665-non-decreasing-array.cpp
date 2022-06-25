@@ -1,6 +1,7 @@
 class Solution {
 public:
-    bool checkPossibility(vector<int>& nums) {
+    //TC - O(3N); SC - O(2N)
+    /*bool checkPossibility(vector<int>& nums) {
         int n=nums.size(),cnt=0;
         vector<int>a(nums),b(nums);
         if(n==1) return true;
@@ -20,5 +21,21 @@ public:
                 bCheck=false;
         }
         return (aCheck || bCheck);
+    }*/
+    
+    //optimal -> TC - O(2N); SC - O(1)
+    bool checkPossibility(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0;i<n-1;i++){
+            if(nums[i]>nums[i+1]){
+                if(i-1>=0 && nums[i-1]>nums[i+1]) nums[i+1]=nums[i];
+                else nums[i]=nums[i+1];
+                break;
+            }
+        }
+        for(int i=0;i<n-1;i++){
+            if(nums[i]>nums[i+1]) return false;
+        }
+        return true;
     }
 };
