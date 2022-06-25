@@ -8,12 +8,12 @@ public:
     int countDistinctSubarray(int nums[], int n){
         //code here.
         unordered_map<int,int>mp;
-        int i=0,cnt=0;
+        int i=0,cnt=0,j=0;
         for(int i=0;i<n;i++)
             mp[nums[i]]++;
         int maxi=mp.size();
         mp.clear();
-        for(int j=0;j<n;j++){
+        for(j=0;j<n;j++){
             mp[nums[j]]++;
             while(mp.size()>=maxi && i<=j){
                 cnt+=(n-j);
