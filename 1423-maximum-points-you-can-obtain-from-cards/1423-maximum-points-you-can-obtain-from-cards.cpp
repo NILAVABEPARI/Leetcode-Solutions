@@ -7,14 +7,12 @@ public:
             sum+=cardPoints[i];
         maxi=sum;
         int low=n-1,high=k-1;
-        while(high!=n-1){
+        while(high>=0){
             sum+=cardPoints[low];
             sum-=cardPoints[high];
             maxi=max(maxi,sum);
             low--;
             high--;
-            if(high<0)
-                high=n-1;
         }
         return maxi;
     }
