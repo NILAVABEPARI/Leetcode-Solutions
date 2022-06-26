@@ -11,12 +11,15 @@ class Solution {
   public:
     vector<int> changeBits(int N) {
         // code here
-        int temp=N,cnt=0;
-        while(N){
-            cnt++;
-            N=N>>1;
-        }
-        N=pow(2,cnt)-1;
+        int temp=N,bits;
+        // while(N){
+        //     cnt++;
+        //     N=N>>1;
+        // }
+        
+        //instead of loop sinply use log
+        bits=log2(N)+1;
+        N=pow(2,bits)-1;
         return {N-temp,N};
     }
 };
