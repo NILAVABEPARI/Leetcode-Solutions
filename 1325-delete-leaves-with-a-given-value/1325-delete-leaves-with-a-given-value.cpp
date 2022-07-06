@@ -16,10 +16,8 @@ public:
     }
     TreeNode* removeLeafNodes(TreeNode* root, int target) {
         if(!root) return NULL;
-        TreeNode *left=removeLeafNodes(root->left,target);
-        if(!left) root->left=left;
-        TreeNode *right=removeLeafNodes(root->right,target);
-        if(!right) root->right=right;
+        if(root->left) root->left=removeLeafNodes(root->left,target);
+        if(root->right) root->right=removeLeafNodes(root->right,target);
         if(isValid(root,target)) return NULL;
         else return root;
     }
