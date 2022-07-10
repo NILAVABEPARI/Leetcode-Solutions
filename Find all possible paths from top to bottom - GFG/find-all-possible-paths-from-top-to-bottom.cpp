@@ -10,38 +10,25 @@ using namespace std;
 
 class Solution{
 public:
-    vector<vector<int>>ans;
-  
-   void solve(vector<vector<int>> grid, int x,int y,vector<int>v){
-       // base case
-       if(x==grid.size()-1 and y==grid[0].size()-1){
-           v.push_back(grid[x][y]);
-           ans.push_back(v);
-           return;
-       }
-       
-       
-       // condition
-       if(x!=grid.size()-1){
-           v.push_back(grid[x][y]);
-           solve(grid,x+1,y,v);
-           v.pop_back();
-       }
-       
-       if(y!=grid[0].size()-1){
-           v.push_back(grid[x][y]);
-           solve(grid,x,y+1,v);
-           v.pop_back();
-       }
-       return;
-   }
-   vector<vector<int>> findAllPossiblePaths(int n, int m, vector<vector<int>> &grid)
-   {
-       // code here
-       vector<int>v;
-       solve(grid,0,0,v);
-       return ans;
-   }
+    void f(int i, int j, int n, int m, vector<vector<int>> &grid, vector<int>&ds, vector<vector<int>>&ans){
+        if(i>=n || j>=m) return;
+        ds.push_back(grid[i][j]);
+        if(i==n-1 && j==m-1){
+            ans.push_back(ds);
+            ds.pop_back();
+            return;
+        }
+        f(i+1,j,n,m,grid,ds,ans);
+        f(i,j+1,n,m,grid,ds,ans);
+        ds.pop_back();
+    }
+    vector<vector<int>> findAllPossiblePaths(int n, int m, vector<vector<int>> &grid)    {
+        // code here
+        vector<vector<int>>ans;
+        vector<int>ds;
+        f(0,0,n,m,grid,ds,ans);
+        return ans;
+    }
 };
 
 // { Driver Code Starts.
