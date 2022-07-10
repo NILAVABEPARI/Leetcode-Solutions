@@ -5,7 +5,7 @@ public:
         vis[i]=true;
         cnt++;
         for(auto it:g[i]){
-            if(!vis[it])                
+            if(!vis[it])
                 dfs(g,vis,it);
         }
     }
@@ -18,7 +18,6 @@ public:
         }        
         vector<bool>vis(n,false);
         vector<int>temp;
-        int prev=0,rem=n;
         for (int i = 0; i < n; i++) {
             if (!vis[i]){
                 cnt=0;
@@ -26,7 +25,7 @@ public:
                 temp.push_back(cnt);
             }
         }
-        long long ln=temp.size(),presum=0,ans=0;
+        long long presum=0,ans=0;
         for(long long i=0;i<temp.size();i++){
             ans+=presum*temp[i];            
             presum+=temp[i];
