@@ -13,7 +13,6 @@ class Solution {
 public:
     int f(TreeNode *root, int tar){
         if(!root) return 0;
-        // if(tar==root->val) return 1;
         return (tar==root->val) + f(root->left,(1ll)*tar-root->val)
             + f(root->right,(1ll)*tar-root->val);
     }
