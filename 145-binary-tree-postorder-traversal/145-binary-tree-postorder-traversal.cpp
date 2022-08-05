@@ -52,14 +52,14 @@ public:
         vector < int > postOrder;
         if (!root) return postOrder;
         stack < TreeNode * > st;
-        while (root != NULL || !st.empty()) {
-            if (root != NULL) {
+        while (root || !st.empty()) {
+            if (root) {
                 st.push(root);
                 root = root-> left;
             } 
             else {
                 TreeNode * temp = st.top() -> right;
-                if (temp == NULL) {
+                if (!temp) {
                     temp = st.top();
                     st.pop();
                     postOrder.push_back(temp -> val);
