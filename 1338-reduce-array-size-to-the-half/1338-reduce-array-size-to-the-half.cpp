@@ -14,8 +14,7 @@ public:
         for(auto &it:mp)
             pq.push({it.first,it.second});
         int cnt=0,len=0;
-        bool flag=true;
-        while(flag && !pq.empty()){
+        while(!pq.empty()){
             len+=pq.top().second;
             //cout<<len<<" ";
             pq.pop();
