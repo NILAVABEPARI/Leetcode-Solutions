@@ -39,7 +39,6 @@ public:
         }
         return pre;
     }
-
     bool isPalindrome(ListNode* head){
         if(!head || !head->next) return true;
         ListNode *slow=head,*fast = head;        
