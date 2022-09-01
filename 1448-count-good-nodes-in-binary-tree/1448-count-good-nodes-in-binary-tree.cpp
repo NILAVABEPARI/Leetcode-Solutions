@@ -11,15 +11,23 @@
  */
 class Solution {
 public:
-    void f(TreeNode *root, int &cnt, int maxi){
-        if(!root) return;
-        if(root->val>=maxi) cnt++;
-        f(root->left,cnt,max(maxi,root->val));
-        f(root->right,cnt,max(maxi,root->val));
-    }
-    int goodNodes(TreeNode* root) {
-        int cnt=0;
-        f(root,cnt,INT_MIN);
-        return cnt;
+    // void f(TreeNode *root, int &cnt, int maxi){
+    //     if(!root) return;
+    //     if(root->val>=maxi) cnt++;
+    //     f(root->left,cnt,max(maxi,root->val));
+    //     f(root->right,cnt,max(maxi,root->val));
+    // }
+    // int goodNodes(TreeNode* root) {
+    //     int cnt=0;
+    //     f(root,cnt,INT_MIN);
+    //     return cnt;
+    // }
+    
+    
+    //1 liner
+    int goodNodes(TreeNode* root, int maxi=INT_MIN){
+        return root ? goodNodes(root->left,max(maxi,root->val)) + 
+                      goodNodes(root->right,max(maxi,root->val)) + 
+                      (root->val>=maxi) : 0;
     }
 };
