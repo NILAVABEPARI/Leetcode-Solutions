@@ -34,10 +34,7 @@ public:
             while(cnt2--) curr2=curr2->next;
         }        
         while(curr1 || curr2){
-            if(curr1==curr2)
-                return curr1;
-            if(curr1->next==curr2->next)
-                return curr2->next;
+            if(curr1==curr2) return curr1;
             curr1=curr1->next;
             curr2=curr2->next;
         }
